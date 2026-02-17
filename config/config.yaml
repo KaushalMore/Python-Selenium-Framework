@@ -1,0 +1,41 @@
+# config/config.yaml
+
+# Environment-specific settings for your application
+#environments:
+#  # The sample automation practice site
+#  wego:
+#    base_url: "https://www.wego.co.in/"
+#    browser: "chrome"
+#    username: "NA"
+#    password: "NA"
+
+#  practice:
+#    base_url: "https://practicetestautomation.com/practice-test-login/"
+#    browser: "chrome"
+#    valid_username: "student"
+#    valid_password: "Password123"
+#    invalid_username: "wronguser"
+#    invalid_password: "wrongpass"
+
+#  default_env: qa
+
+#  qa:
+#    base_url: "https://practicetestautomation.com/practice-test-login/"
+#    browser: "chrome"
+
+#  dev:
+#    base_url: "https://practicetestautomation.com/practice-test-login/"
+#    browser: "chrome"
+
+#  prod:
+#    base_url: "https://practicetestautomation.com/practice-test-login/"
+#    browser: "chrome"
+
+
+base_url: "https://practicetestautomation.com"
+browser: "chrome"
+valid_username: "student"
+valid_password: "Password123"
+invalid_username: "wronguser"
+invalid_password: "wrongpass"
+

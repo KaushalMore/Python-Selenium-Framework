@@ -1,0 +1,41 @@
+
+#Virtual Environment
+shopperframework/
+venv/
+env/
+.env
+bin/
+Lib/
+Include/
+pyvenv.cfg
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+*.log
+logs/
+
+# Test Reports (Pytest-html, Allure)
+reports/
+htmlcov/
+.coverage
+allure-results/
+allure-report/
+
+# Screenshots (Failed tests)
+screenshots/
+
+# JetBrains (PyCharm)
+.idea/
+
+# VS Code
+.vscode/
+
+# Other
+.DS_Store (Mac specific)
+Thumbs.db (Windows specific)
