@@ -70,7 +70,7 @@ import pytest
 @pytest.mark.smoke
 class TestLogin(BaseTest):
     def test_valid_login(self):
-        login_page = LoginPage(self.driver)
+        login_page = LoginPage(self.driver, self.logger)
 
         login_page.open_login_page(self.config.get("base_url"))
         login_page.login(self.config.get("valid_username"), self.config.get("valid_password"))
@@ -79,7 +79,7 @@ class TestLogin(BaseTest):
 
     @pytest.mark.regression
     def test_invalid_login(self):
-        login_page = LoginPage(self.driver)
+        login_page = LoginPage(self.driver, self.logger)
 
         login_page.open_login_page(self.config.get("base_url"))
         login_page.login(self.config.get("invalid_username"), self.config.get("invalid_password"))

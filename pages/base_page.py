@@ -6,10 +6,10 @@ from utils.logger import get_logger
 
 class BasePage:
 
-    def __init__(self, driver):
+    def __init__(self, driver, logger):
         self.driver = driver
         self.waits = WebDriverWait(driver, 10)
-        self.logger = get_logger(self.__class__.__name__)
+        self.logger = logger
 
     def get_url(self, url):
         self.logger.info(f"Opening URL: {url}")
