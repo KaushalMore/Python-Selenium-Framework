@@ -2,7 +2,7 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 
-
+# logs package log
 def get_logger(name):
     logger = logging.getLogger(name)
 
@@ -28,7 +28,7 @@ def get_logger(name):
 # import logging
 # import os
 #
-#
+# # report package log
 # def get_logger(name):
 #     logger = logging.getLogger(name)
 #
