@@ -22,6 +22,7 @@ def test_valid_login(driver):
     finally:
         driver.quit()
 '''
+import allure
 
 '''
 # import pytest
@@ -68,22 +69,42 @@ import pytest
 
 
 @pytest.mark.smoke
+@allure.feature("PracticeTestAutomation Login")
 class TestLogin(BaseTest):
     def test_valid_login(self):
         login_page = LoginPage(self.driver)
 
-        login_page.open_login_page()
-        login_page.login(self.config["environments"]["practice"]["valid_username"],
-                         self.config["environments"]["practice"]["valid_password"])
+        with allure.step("Opening Login Page"):
+            login_page.open_login_page()
 
-        assert "Logged In Successfully" in login_page.get_success_message()
+        with allure.step(f"Entering Valid Username: {self.config['environments']['practice']['valid_username']}"):
+            login_page.enter_username(self.config["environments"]["practice"]["valid_username"])
+
+        with allure.step(f"Entering Valid Password: {self.config['environments']['practice']['valid_password']}"):
+            login_page.enter_password(self.config["environments"]["practice"]["valid_password"])
+
+        with allure.step("Click submit button"):
+            login_page.click_submit()
+
+        with allure.step("Verifying Success Login"):
+            assert "Logged In Successfully" in login_page.get_success_message()
 
     @pytest.mark.regression
+    @allure.feature("PracticeTestAutomation Login")
     def test_invalid_login(self):
         login_page = LoginPage(self.driver)
 
-        login_page.open_login_page()
-        login_page.login(self.config["environments"]["practice"]["invalid_username"],
-                         self.config["environments"]["practice"]["invalid_password"])
+        with allure.step("Opening Login Page"):
+            login_page.open_login_page()
 
-        assert "Your username is invalid!" in login_page.get_error_message()
+        with allure.step(f"Entering Invalid Username: {self.config['environments']['practice']['invalid_username']}"):
+            login_page.enter_username(self.config["environments"]["practice"]["invalid_username"])
+
+        with allure.step(f"Entering Invalid Password: {self.config['environments']['practice']['invalid_password']}"):
+            login_page.enter_password(self.config["environments"]["practice"]["invalid_password"])
+
+        with allure.step("Click Submit Button"):
+            login_page.click_submit()
+
+        with allure.step("Verifying Error Message"):
+            assert "Your username is invalid!" in login_page.get_error_message()
