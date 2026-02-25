@@ -4,6 +4,7 @@ from utils.config_reader import ConfigReader
 import os
 import allure
 
+
 # fixture - fixed, reliable and reusable base line for test and it is function in python pytest testing framework.
 # scope - "function"(by default), "class", "module"(module means file), "package"(folder), "session
 # driver fixture
@@ -29,6 +30,10 @@ def driver(config):
 
     if browser == "chrome":
         driver = webdriver.Chrome()
+    elif browser == "edge":
+        driver = webdriver.Edge()
+    elif browser == "firefox":
+        driver = webdriver.Firefox()
     else:
         raise Exception(f"Unsupported browser {browser}")
 

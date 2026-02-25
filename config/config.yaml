@@ -31,11 +31,15 @@
 #    base_url: "https://practicetestautomation.com/practice-test-login/"
 #    browser: "chrome"
 
-
-base_url: "https://practicetestautomation.com"
-browser: "chrome"
-valid_username: "student"
-valid_password: "Password123"
-invalid_username: "wronguser"
-invalid_password: "wrongpass"
-
+browser: "edge"
+environments:
+  practice:
+    base_url: "https://practicetestautomation.com"
+    browser: "chrome"
+    valid_username: "student"
+    valid_password: "Password123"
+    invalid_username: "incorrectUser"
+    invalid_password: "incorrectPassword"
+  sauce_demo:
+    base_url: "https://www.saucedemo.com"
+    browser: "edge"

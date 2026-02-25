@@ -1,3 +1,6 @@
+import os
+
+import yaml
 from selenium.common import NoSuchElementException
 from pages.base_page import BasePage
 
@@ -12,7 +15,20 @@ class LoginPage(BasePage):
     # def __init__(self, driver):
     #     super().__init__(driver)
 
-    def open_login_page(self, base_url):
+    # def open_login_page(self, base_url):
+    #     self.get_url(f"{base_url}/practice-test-login/")
+
+    def get_base_url(self):
+        base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        config_path = os.path.join(base_path, "config", "config.yaml")
+
+        with open(config_path) as config_file:
+            config = yaml.safe_load(config_file)
+
+        return config["environments"]["practice"]["base_url"]
+
+    def open_login_page(self):
+        base_url = self.get_base_url()
         self.get_url(f"{base_url}/practice-test-login/")
 
     def enter_username(self, username):
