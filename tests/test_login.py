@@ -22,7 +22,6 @@ def test_valid_login(driver):
     finally:
         driver.quit()
 '''
-import allure
 
 '''
 # import pytest
@@ -65,12 +64,16 @@ def test_invalid_login(driver, config):
 
 from pages.login_page import LoginPage
 from tests.base_test import BaseTest
+import allure
 import pytest
 
 
-@pytest.mark.smoke
-@allure.feature("PracticeTestAutomation Login")
 class TestLogin(BaseTest):
+    @allure.feature("PracticeTestAutomation Login")
+    @allure.story("Positive Testing - Valid Login")
+    @allure.description("Login with valid username and valid password")
+    @pytest.mark.smoke
+    @pytest.mark.order(1)
     def test_valid_login(self):
         login_page = LoginPage(self.driver)
 
@@ -89,8 +92,11 @@ class TestLogin(BaseTest):
         with allure.step("Verifying Success Login"):
             assert "Logged In Successfully" in login_page.get_success_message()
 
-    @pytest.mark.regression
     @allure.feature("PracticeTestAutomation Login")
+    @allure.story("Negative Testing - Invalid Login")
+    @allure.description("Login with invalid username and invalid password")
+    @pytest.mark.regression
+    @pytest.mark.order(2)
     def test_invalid_login(self):
         login_page = LoginPage(self.driver)
 
