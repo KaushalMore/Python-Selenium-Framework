@@ -66,4 +66,20 @@ def pytest_runtest_makereport(item, call):
                 attachment_type=allure.attachment_type.PNG,
             )
 
-# how to skip to test cases
+
+@pytest.fixture(params=ConfigReader.read_config()["environments"]["orange_hrm"]["browser"])
+def cross_browser_driver(request):
+    browser = request.param
+
+    if browser == "chrome":
+        driver = webdriver.Chrome()
+    elif browser == "firefox":
+        driver = webdriver.Firefox()
+    elif browser == "edge":
+        driver = webdriver.Edge()
+    else:
+        raise Exception(f"Unsupported browser {browser}")
+
+    driver.maximize_window()
+    yield driver
+    driver.quit()
