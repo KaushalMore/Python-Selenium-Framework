@@ -5,7 +5,7 @@ import os
 import allure
 
 
-# fixture - fixed, reliable and reusable base line for test and it is function in python pytest testing framework.
+# fixture - fixed, reliable and reusable baseline for test, and it is function in python pytest testing framework.
 # scope - "function"(by default), "class", "module"(module means file), "package"(folder), "session"
 
 # driver fixture

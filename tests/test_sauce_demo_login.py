@@ -6,7 +6,7 @@ from utils.excel_reader import get_test_data
 test_data = get_test_data()
 
 
-@pytest.mark.parametrize("username,password, scenario", test_data)
+@pytest.mark.parametrize("username, password, scenario", test_data)
 def test_sauce_demo_login(driver, username, password, scenario):
     login_page = SauceDemoLoginPage(driver)
 
