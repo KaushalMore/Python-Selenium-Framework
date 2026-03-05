@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        python 'Python313'
-    }
-
     stages {
 
         stage('Checkout Code') {
