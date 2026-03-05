@@ -3,7 +3,9 @@ import openpyxl
 
 
 def get_test_data():
-    base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_path = os.path.abspath(os.getcwd())  # Jenkins workspace root
+
     file_path = os.path.join(base_path, "test_data", "login_credentials_sauce_demo.xlsx")
 
     workbook = openpyxl.load_workbook(file_path)
