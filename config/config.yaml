@@ -31,7 +31,7 @@
 #    base_url: "https://practicetestautomation.com/practice-test-login/"
 #    browser: "chrome"
 
-browser: "edge"
+browser: "chrome"
 environments:
   practice:
     base_url: "https://practicetestautomation.com"
@@ -42,4 +42,4 @@ environments:
     invalid_password: "incorrectPassword"
   sauce_demo:
     base_url: "https://www.saucedemo.com"
-    browser: "edge"
+    browser: "chrome"
