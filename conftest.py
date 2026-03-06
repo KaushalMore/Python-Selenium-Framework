@@ -4,6 +4,12 @@ from utils.config_reader import ConfigReader
 import os
 import allure
 
+from selenium.webdriver.chrome.options import Options
+
+options = Options()
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
+
 
 # fixture - fixed, reliable and reusable baseline for test, and it is function in python pytest testing framework.
 # scope - "function"(by default), "class", "module"(module means file), "package"(folder), "session"
@@ -30,11 +36,11 @@ def driver(config):
     browser = config.get("browser")
 
     if browser == "chrome":
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(options=options)
     elif browser == "edge":
-        driver = webdriver.Edge()
+        driver = webdriver.Edge(options=options)
     elif browser == "firefox":
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(options=options)
     else:
         raise Exception(f"Unsupported browser {browser}")
 
@@ -72,11 +78,11 @@ def cross_browser_driver(request):
     browser = request.param
 
     if browser == "chrome":
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(options=options)
     elif browser == "firefox":
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(options=options)
     elif browser == "edge":
-        driver = webdriver.Edge()
+        driver = webdriver.Edge(options=options)
     else:
         raise Exception(f"Unsupported browser {browser}")
 

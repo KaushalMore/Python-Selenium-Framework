@@ -31,7 +31,7 @@
 #    base_url: "https://practicetestautomation.com/practice-test-login/"
 #    browser: "chrome"
 
-browser: "edge"
+browser: "chrome"
 environments:
   practice:
     base_url: "https://practicetestautomation.com"
