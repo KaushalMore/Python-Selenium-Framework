@@ -4,11 +4,9 @@ from utils.config_reader import ConfigReader
 import os
 import allure
 
-from selenium.webdriver.chrome.options import Options
-
-options = Options()
-options.add_argument("--headless")
-options.add_argument("--disable-gpu")
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 
 # fixture - fixed, reliable and reusable baseline for test, and it is function in python pytest testing framework.
@@ -36,10 +34,21 @@ def driver(config):
     browser = config.get("browser")
 
     if browser == "chrome":
+        options = ChromeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--disable-gpu")
+
         driver = webdriver.Chrome(options=options)
     elif browser == "edge":
+        options = EdgeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--disable-gpu")
+
         driver = webdriver.Edge(options=options)
     elif browser == "firefox":
+        options = FirefoxOptions()
+        options.add_argument("--headless")
+
         driver = webdriver.Firefox(options=options)
     else:
         raise Exception(f"Unsupported browser {browser}")
@@ -78,11 +87,22 @@ def cross_browser_driver(request):
     browser = request.param
 
     if browser == "chrome":
+        options = ChromeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--disable-gpu")
+
         driver = webdriver.Chrome(options=options)
-    elif browser == "firefox":
-        driver = webdriver.Firefox(options=options)
     elif browser == "edge":
+        options = EdgeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--disable-gpu")
+
         driver = webdriver.Edge(options=options)
+    elif browser == "firefox":
+        options = FirefoxOptions()
+        options.add_argument("--headless")
+
+        driver = webdriver.Firefox(options=options)
     else:
         raise Exception(f"Unsupported browser {browser}")
 
