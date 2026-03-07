@@ -2,6 +2,7 @@ from pages.orangehrm_login import OrgLoginPage
 from utils.config_reader import ConfigReader
 import allure
 
+
 @allure.feature("Orange Login")
 def test_orangehrm_login(cross_browser_driver):
     config = ConfigReader.read_config()
