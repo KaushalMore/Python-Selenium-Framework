@@ -6,56 +6,14 @@ import allure
 
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.edge.service import Service
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-
-
-# fixture - fixed, reliable and reusable baseline for test, and it is function in python pytest testing framework.
-# scope - "function"(by default), "class", "module"(module means file), "package"(folder), "session"
-
-# driver fixture
-# @pytest.fixture
-# def driver():
-#     driver = webdriver.Chrome()
-#     driver.maximize_window()
-#     driver.get("https://practicetestautomation.com/practice-test-login/")
-#     yield driver
-#     driver.quit()
 
 
 # config fixture
 @pytest.fixture(scope="session")
 def config():
     return ConfigReader.read_config()
-
-
-# driver fixture
-@pytest.fixture
-def driver(config):
-    browser = config.get("browser")
-
-    if browser == "chrome":
-        options = ChromeOptions()
-        options.add_argument("--headless")
-        options.add_argument("--disable-gpu")
-
-        driver = webdriver.Chrome(options=options)
-    elif browser == "edge":
-        options = EdgeOptions()
-        options.add_argument("--headless")
-        options.add_argument("--disable-gpu")
-
-        driver = webdriver.Edge(options=options)
-    elif browser == "firefox":
-        options = FirefoxOptions()
-        options.add_argument("--headless")
-
-        driver = webdriver.Firefox(options=options)
-    else:
-        raise Exception(f"Unsupported browser {browser}")
-
-    driver.maximize_window()
-    yield driver
-    driver.quit()
 
 
 # screenshots on failed
@@ -97,7 +55,8 @@ def cross_browser_driver(request):
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
 
-        driver = webdriver.Edge(options=options)
+        service = Service("C:/WebDrivers/msedgedriver.exe")
+        driver = webdriver.Edge(service=service, options=options)
     elif browser == "firefox":
         options = FirefoxOptions()
         options.add_argument("--headless")
