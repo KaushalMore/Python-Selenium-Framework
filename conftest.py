@@ -6,6 +6,7 @@ import allure
 
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.edge.service import Service
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 
@@ -27,7 +28,7 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 def config():
     return ConfigReader.read_config()
 
-
+'''
 # driver fixture
 @pytest.fixture
 def driver(config):
@@ -57,7 +58,7 @@ def driver(config):
     yield driver
     driver.quit()
 
-
+'''
 # screenshots on failed
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -97,7 +98,8 @@ def cross_browser_driver(request):
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
 
-        driver = webdriver.Edge(options=options)
+        service = Service("C:/WebDrivers/msedgedriver.exe")
+        driver = webdriver.Edge(service=service, options=options)
     elif browser == "firefox":
         options = FirefoxOptions()
         options.add_argument("--headless")
